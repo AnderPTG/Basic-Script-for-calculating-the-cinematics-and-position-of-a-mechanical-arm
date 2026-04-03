@@ -6,20 +6,20 @@ L_B = 3;
 L_C = 5; 
 L_D = 4; 
 
-Puntos finales
+%%Puntos finales
 inclinacion = 6/pi*3; % angle of inclination in radians
 inclinacion_grados = rad2deg(inclinacion);
 plano_x = L_a+L_B; % plane in X between A and B 
 plano_y = L_C + L_D; % Plane in Y between C and D
 
-movimiento final del brazo
+%%movimiento final del brazo
 dx_del_brazo = plano_x-L_D*cos(inclinacion);
 dy_del_brazo = plano_y-L_D*sin(inclinacion);
 r = sqrt(plano_x^2 + plano_y^2); % mechanical arm movement
 recorrido_ba = L_a - L_B; % direct route between those 2 points
 
-cinematica directa
-usemos los efectores para ver cuanto tiene que rotar el brazo
+%%direct cinematic
+%%we will use the effectors to get the resulting of the cinematics 
 inclinacion_deseada = acosd((r^2-recorrido_ba^2- L_C^2)/(2*recorrido_ba*L_C));
 inclinacion_deseada_a_real =imag(inclinacion_deseada) % I converted those into a real number because it appeared an imaginary number
 inclinacion_inicial = atand(dy_del_brazo/dx_del_brazo)-atan(L_C*sin(inclinacion_deseada_a_real/recorrido_ba+L_C*cos(inclinacion_deseada_a_real)))
